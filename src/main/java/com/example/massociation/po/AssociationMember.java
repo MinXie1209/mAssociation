@@ -1,24 +1,30 @@
 package com.example.massociation.po;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
-/**
- * @ClassName AssociationMember
- * @Description TODO
- * @Author 江南小俊
- * @Date 2019/1/8 0:18
- * @Version 1.0.0
- **/
 @Data
+@AllArgsConstructor
 public class AssociationMember {
-    //社团成员的id
     private Integer associationMemberId;
-    //成员学号
-    private Integer AssociationMemberNo;
-    //社团名字
-    private String getAssociationMemberId;
-    //成员职务
+
+    private Integer associationMemberNo;
+
+    private String associationName;
+
     private String duties;
-    //状态 0-未审核，1-已审核，2-已注销
+
     private Integer status;
+
+
+    public AssociationMember(Integer stuNo, String aName) {
+        this.associationMemberNo = stuNo;
+        this.associationName = aName;
+    }
+
+    public AssociationMember(Integer stuNo, String aName, Integer status, String duties) {
+        this(stuNo, aName);
+        this.status = status;
+        this.duties = duties;
+    }
 }
