@@ -3,6 +3,7 @@ package com.example.massociation.controller;
 import com.example.massociation.common.enums.ResultEnum;
 import com.example.massociation.common.utils.ResultUtils;
 import com.example.massociation.common.vo.Result;
+import com.example.massociation.po.Association;
 import com.example.massociation.po.AssociationMember;
 import com.example.massociation.service.AssociationMemberService;
 import io.swagger.annotations.ApiOperation;
@@ -48,6 +49,16 @@ public class AssociationMemberController {
             return ResultUtils.success(associationMemberList);
         } else {
             return ResultUtils.error(ResultEnum.ERROR_ADD_ASSOCIATIONMEMBER);
+        }
+    }
+    @ApiOperation(value = "通过学号获取社团", notes = "")
+    @GetMapping("/association_member/{stuNo}")
+    public Result getAssociationByStuNo( @PathVariable("stuNo") @ApiParam("学号") String stuNo) {
+        Association association=associationMemberService.getAssociationByStuNo(stuNo);
+        if (association!=null) {
+            return ResultUtils.success(association);
+        } else {
+            return ResultUtils.error(ResultEnum.UN_ERROR);
         }
     }
     @ApiOperation(value = "修改社团成员的状态", notes = "")

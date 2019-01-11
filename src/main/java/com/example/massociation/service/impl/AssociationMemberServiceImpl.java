@@ -1,6 +1,7 @@
 package com.example.massociation.service.impl;
 
 import com.example.massociation.mapper.AssociationMemberMapper;
+import com.example.massociation.po.Association;
 import com.example.massociation.po.AssociationMember;
 import com.example.massociation.service.AssociationMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,19 @@ public class AssociationMemberServiceImpl implements AssociationMemberService {
 
     @Override
     public List<AssociationMember> listAssociationMember(Integer status, String aName) {
+        if(status==3){
+            return associationMemberMapper.listAssociationMemberByName(aName);
+        }
         return associationMemberMapper.listAssociationMember(status,aName);
     }
 
     @Override
     public int updateAssociationMemberStatus(Integer stuNo, String aName, Integer status) {
         return associationMemberMapper.updateAssociationMemberStatus(stuNo,aName,status);
+    }
+
+    @Override
+    public Association getAssociationByStuNo(String sutNo) {
+        return associationMemberMapper.getAssociationByStuNo(sutNo);
     }
 }
